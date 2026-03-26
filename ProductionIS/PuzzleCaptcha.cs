@@ -6,10 +6,7 @@ using System.Windows.Forms;
 
 namespace ProductionIS.Controls
 {
-    /// <summary>
-    /// Пазл-капча: пользователь перетаскивает фрагменты изображения мышью,
-    /// восстанавливая его исходный порядок.
-    /// </summary>
+
     public class PuzzleCaptcha : Panel
     {
         private const int Columns    = 2;
@@ -76,7 +73,7 @@ namespace ProductionIS.Controls
         {
             for (int slot = 0; slot < tileOrder.Count; slot++)
             {
-                if (slot == dragSourceIndex) continue;  // перетаскиваемый тайл рисуется поверх
+                if (slot == dragSourceIndex) continue; 
 
                 var rect = GetTileRect(slot);
                 e.Graphics.DrawImage(tileImages[tileOrder[slot]], rect);
@@ -85,7 +82,6 @@ namespace ProductionIS.Controls
                 e.Graphics.DrawRectangle(borderPen, rect);
             }
 
-            // Рисуем перетаскиваемый тайл под курсором
             if (dragSourceIndex >= 0)
             {
                 var dest = new Rectangle(
@@ -123,7 +119,6 @@ namespace ProductionIS.Controls
             int dropSlot = HitTest(e.Location);
             if (dropSlot >= 0 && dropSlot != dragSourceIndex)
             {
-                // Меняем два тайла местами
                 (tileOrder[dragSourceIndex], tileOrder[dropSlot]) =
                     (tileOrder[dropSlot], tileOrder[dragSourceIndex]);
             }
